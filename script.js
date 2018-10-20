@@ -5,6 +5,15 @@
     'Buy milk'
   ];
 
+  // Prevent accidental form submission
+  // Blocks the enter key press event
+  // DEMO ONLY - this makes it less user friendly
+  document.onkeydown = event => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  };
+
   const todoUl = document.querySelector('#todoList');
   const todoForm = document.querySelector('#addTodoForm');
   const todoInput = document.querySelector('input[name=newTodo]');
