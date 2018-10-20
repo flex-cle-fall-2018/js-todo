@@ -1,0 +1,11 @@
+#todoList {
+  background: yellow;
+}
+
+input[name=newTodo] {
+  border: 1px solid red;
+}
+
+#addTodoForm input[type=submit] {
+  color: purple;
+}
