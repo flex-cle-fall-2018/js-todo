@@ -1,8 +1,9 @@
 (function() {
 
-  const todos = [];
-  todos.push('Mow the lawn');
-  todos.push('Buy milk');
+  const todos = [
+    'Mow the lawn',
+    'Buy milk'
+  ];
 
   const todoUl = document.querySelector('#todoList');
   const todoForm = document.querySelector('#addTodoForm');
@@ -18,12 +19,32 @@
     // Clear existing to-do list
     todoUl.innerHTML = '';
 
+    // Indicate if list is empty
+    if (todos.length === 0) {
+      const todoLi = document.createElement('li');
+      todoLi.textContent = 'Nothing to do!';
+      todoUl.appendChild(todoLi);
+    }
+
     // Render to-do list items
     for (let i = 0; i < todos.length; i++) {
       const currentTodo = todos[i];
 
       const todoLi = document.createElement('li');
       todoLi.textContent = currentTodo;
+
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'X';
+      deleteButton.addEventListener('click', function() {
+        // Doesn't work - they will all come back
+        // todoLi.remove();
+
+        // Modify the single source of truth
+        todos.splice(i, 1);
+        render();
+      });
+
+      todoLi.appendChild(deleteButton);
       todoUl.appendChild(todoLi);
     }
   }
@@ -32,11 +53,17 @@
     // Get value of input
     const todoText = todoInput.value;
 
-    // Add item to JavaScript array
-    todos.push(todoText);
+    // If the input has text...
+    if (todoText.length > 0) {
+      // Add item to JavaScript array
+      todos.push(todoText);
 
-    // Re-render list on page
-    render();
+      // Clear input
+      todoInput.value = '';
+
+      // Re-render list on page
+      render();
+    }
   }
 
   render();
