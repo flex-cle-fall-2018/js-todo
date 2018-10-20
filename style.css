@@ -2,6 +2,7 @@
 
 * {
   font-family: 'Cantarell', sans-serif;
+  box-sizing: border-box;
 }
 
 body {
@@ -12,14 +13,21 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  margin: 0;
+  text-align: center;
+}
+
 #lists {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
+  grid-column-gap: 1rem;
+  grid-template-rows: auto 1fr;
 }
 
 ul {
   padding: 0;
+  margin-top: 0;
 }
 
 #todoList,
@@ -31,13 +39,27 @@ ul {
   /* background: yellow; */
 }
 
+#addTodoForm {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 1rem;
+}
+
 input[name=newTodo] {
-  /* border: 1px solid red; */
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #000;
+  padding: 0 0.5rem;
 }
 
 #addTodoForm input[type=submit] {
-  /* color: purple; */
+  border: 1px solid #000;
+  border-radius: 3px;
+  background: green;
+  color: white;
+  padding: 0 0.5rem;
 }
+
 
 #todoList li,
 #doneList li {

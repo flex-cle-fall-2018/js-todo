@@ -4,8 +4,8 @@
    * Items that still need done.
    */
   const todos = [
-    'Mow the lawn',
-    'Buy milk'
+    { task: 'Mow the lawn' },
+    { task: 'Buy milk' }
   ];
 
   /**
@@ -51,7 +51,7 @@
 
       // Create list item
       const todoLi = document.createElement('li');
-      todoLi.textContent = currentTodo;
+      todoLi.textContent = currentTodo.task;
 
       // Create delete button
       const deleteButton = document.createElement('button');
@@ -69,8 +69,8 @@
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
       checkbox.addEventListener('click', function() {
-        const completedTodo = todos.splice(i, 1);
-        dones.push(completedTodo);
+        const completedTodoArray = todos.splice(i, 1);
+        dones.push(...completedTodoArray);
         render();
       });
 
@@ -86,7 +86,7 @@
 
       // Create list item
       const doneLi = document.createElement('li');
-      doneLi.textContent = currentDone;
+      doneLi.textContent = currentDone.task;
 
       // Create delete button
       const deleteButton = document.createElement('button');
@@ -102,8 +102,8 @@
       checkbox.setAttribute('type', 'checkbox');
       checkbox.checked = true;
       checkbox.addEventListener('click', function() {
-        const incompleteTodo = dones.splice(i, 1);
-        todos.push(incompleteTodo);
+        const incompleteTodoArray = dones.splice(i, 1);
+        todos.push(...incompleteTodoArray);
         render();
       });
       
@@ -121,7 +121,7 @@
     // If the input has text...
     if (todoText.length > 0) {
       // Add item to JavaScript array
-      todos.push(todoText);
+      todos.push({ task: todoText });
 
       // Clear input
       todoInput.value = '';
